@@ -13,21 +13,20 @@ If you're unfamiliar with Docker, this might be a little tricky for you. It's wo
 
 - Install Docker and Docker Compose for your platform
 - Run `python deploy/generate_env.py` to set up the docker environment configuration
+- Add the line `DJANGO_DEBUG=1` to `deploy/django.env` if you are running a development environment. Don't do this in production!
 - Run `docker-compose build`
 - Run `docker-compose up -d`
-- The site will now be running on `http://localhost`
-- Enter a shell on the docker django machine `docker exec -it YOUR_CONTAINER_ID bash`
+- Enter a shell on the docker django machine `docker-compose exec django bash`
 - Create the database `python3 manage.py migrate`
 - Add a superuser `python3 manage.py createsuperuser`
 - Collect static files `python3 manage.py collectstatic`
-- Add Data into the [Django Admin](http://localhost/admin/).
+- The site will now be running on `http://localhost`
+- Add Data into the [Django Admin](http://localhost/admin/). Set up at least one Comic and then give it at least one Page.
 - Open [the Site](http://localhost) in a Web Browser.
 
 
 # Roadmap
 
-- [x] Add a docker-generated secret key for Django
-- [x] Full overhaul of Docker image (Alpine-based for faster builds)
 - [ ] Better tenant SSL cert management (LetsEncrypt)
 - [ ] Social link previews & search engine metadata (use SEO checkers)
   - [x] Page
